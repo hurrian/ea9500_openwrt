@@ -19,8 +19,15 @@ src-git ea9500_openwrt https://github.com/hurrian/ea9500_openwrt.git
 $ ./scripts/feeds update -a
 $ ./scripts/feeds install -a
 ```
-
 ### Step 2
+The custom ``board.d`` configuration overlay needs to be enabled by using the [custom files](https://openwrt.org/docs/guide-developer/build-system/use-buildsystem#custom_files) feature of the OpenWrt buildroot.
+While in your buildroot directory (ex. ``~/openwrt``), run the following command:
+
+```
+~/openwrt $   ln -s feeds/ea9500_openwrt/files files
+```
+
+### Step 3
 You must then enable the Linksys EA9500 target in `target/linux/bcm53xx/image/Makefile` by uncommenting `TARGET_DEVICES += linksys-ea9500`.
 
 ```
@@ -33,7 +40,7 @@ endef
 TARGET_DEVICES += linksys-ea9500
 ```
 
-### Step 3
+### Step 4
 In `make menuconfig`, select `Base System -> ea9500_support <*>`, and deselect `Firmware -> brcmfmac-firmware-4366c0 [ ]`.
 For some reason, the latest Broadcom firmware from `linux-firmware` (10.10.122.x) is not properly supported by brcmfmac - using the newer version will render `radio2` non-functional.
 
