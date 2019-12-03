@@ -2,7 +2,7 @@ ea9500_openwrt
 =====
 OpenWrt support for the Linksys EA9500
 
-This repository aims to support the Linksys EA9500 (linksys,panamera) using the ``swconfig`` driver and configuration framework.
+This repository aims to support the Linksys EA9500 `(linksys,panamera)` using the `swconfig` driver and configuration framework.
 
 ## Components
 * [ea9500_support](https://github.com/hurrian/ea9500_openwrt/package/ea9500_support) : Adds LED, switch, and dual-partition support for the Linksys EA9500
@@ -15,6 +15,9 @@ To build OpenWrt for the EA9500, you must first add this feed to your `feeds.con
 
 ```
 src-git ea9500_openwrt https://github.com/hurrian/ea9500_openwrt.git
+
+$ ./scripts/feeds update -a
+$ ./scripts/feeds install -a
 ```
 
 ### Step 2
@@ -35,7 +38,7 @@ In `make menuconfig`, select `Base System -> ea9500_support <*>`, and deselect `
 For some reason, the latest Broadcom firmware from `linux-firmware` (10.10.122.x) is not properly supported by brcmfmac - using the newer version will render `radio2` non-functional.
 
 ## Quirks
-The EA9500's CPU ports are directly connected to a BCM53012 switch wired to LAN4,7,8 plus an external BCM53125 switch wired to LAN1,2,5,6.
+The EA9500's CPU ports are directly connected to a BCM53012 switch wired to LAN4,7,8 plus an external BCM53125 switch wired to LAN1,2,3,5,6.
 This may result in some pretty bizarre network operation.
 
 ## License
