@@ -5,7 +5,7 @@ OpenWrt support for the Linksys EA9500
 This repository aims to support the Linksys EA9500 (linksys,panamera) using the ``swconfig`` driver and configuration framework.
 
 ## Components
-* [ea9500_support](https://github.com/hurrian/ea9500_openwrt/package/ea9500_support) : Adds LED and switch support for the Linksys EA9500
+* [ea9500_support](https://github.com/hurrian/ea9500_openwrt/package/ea9500_support) : Adds LED, switch, and dual-partition support for the Linksys EA9500
 * [brcmfmac-firmware-4366c0-pcie-ea9500](https://github.com/hurrian/ea9500_openwrt/package/firmware/brcmfmac-firmware-4366c0-pcie-ea9500) : Adds the proper Broadcom firmware version for Linksys EA9500 (10.10.69.69/FWID 01-8438621f)
 
 ## Building
