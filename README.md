@@ -6,7 +6,6 @@ This repository aims to support the Linksys EA9500 `(linksys,panamera)` using th
 
 ## Components
 * [ea9500_support](https://github.com/hurrian/ea9500_openwrt/package/ea9500_support) : Adds LED, switch, and dual-partition support for the Linksys EA9500
-* [brcmfmac-firmware-4366c0-pcie-ea9500](https://github.com/hurrian/ea9500_openwrt/package/firmware/brcmfmac-firmware-4366c0-pcie-ea9500) : Adds the proper Broadcom firmware version for Linksys EA9500 (10.10.69.69/FWID 01-8438621f)
 
 ## Building
 
@@ -20,7 +19,7 @@ $ ./scripts/feeds update -a
 $ ./scripts/feeds install -a
 ```
 ### Step 2
-The custom ``board.d`` configuration overlay needs to be enabled by using the [custom files](https://openwrt.org/docs/guide-developer/build-system/use-buildsystem#custom_files) feature of the OpenWrt buildroot.
+The custom configuration overlay needs to be enabled by using the [custom files](https://openwrt.org/docs/guide-developer/build-system/use-buildsystem#custom_files) feature of the OpenWrt buildroot.
 While in your buildroot directory (ex. ``~/openwrt``), run the following command:
 
 ```
@@ -41,12 +40,14 @@ TARGET_DEVICES += linksys-ea9500
 ```
 
 ### Step 4
-In `make menuconfig`, select `Base System -> ea9500_support <*>`, and deselect `Firmware -> brcmfmac-firmware-4366c0 [ ]`.
-For some reason, the latest Broadcom firmware from `linux-firmware` (10.10.122.x) is not properly supported by brcmfmac - using the newer version will render `radio2` non-functional.
+In `make menuconfig`, select `Base System -> ea9500_support <*>`.
 
 ## Quirks
 The EA9500's CPU ports are directly connected to a BCM53012 switch wired to LAN4,7,8 plus an external BCM53125 switch wired to LAN1,2,3,5,6.
-This may result in some pretty bizarre network operation.
+This means that you will only see the internal BCM53012 ports in LuCI's switch configuration.
+
+For some reason, the latest Broadcom firmware from `linux-firmware` (10.10.122.x) is not properly supported by brcmfmac - using the newer version will render `radio2` non-functional.
+This repository includes the latest known working version of BCM4366C0 firmware for EA9500 (10.10.69.69).
 
 ## License
 Files are licensed under the terms of GNU GPLv2 License; see LICENSE file for details.

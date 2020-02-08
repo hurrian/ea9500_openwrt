@@ -20,7 +20,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ea9500_support
   SECTION:=base
   CATEGORY:=Base system
-  DEPENDS:=+brcmfmac-firmware-4366c0-pcie-ea9500
   TITLE:=$(1)
 endef
 
