@@ -35,7 +35,7 @@ endef
 define Package/ea9500_support/install
 	# Make dual boot behave
 	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_DATA) ./files/etc/init.d/clear_partialboot $(1)/etc/init.d/
+	$(INSTALL_BIN) ./files/etc/init.d/clear_partialboot $(1)/etc/init.d/clear_partialboot
 endef
 
 $(eval $(call BuildPackage,ea9500_support))
