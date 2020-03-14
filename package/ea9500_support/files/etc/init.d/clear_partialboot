@@ -5,7 +5,7 @@ boot() {
 . /lib/functions.sh
 
 case $(board_name) in
-	linksys,ea9500)
+	linksys,panamera)
 		# clear partialboots and always set to boot first partition
 		nvram set bootpartition=0 && nvram set partialboots=0 && nvram commit
 		;;
