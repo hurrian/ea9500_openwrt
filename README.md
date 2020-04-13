@@ -39,8 +39,18 @@ endef
 TARGET_DEVICES += linksys-ea9500
 ```
 
-### Step 4
+### Step 4 (Optional)
+Copy `999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch` to `target/linux/bcm53xx/patches-4.14` to allow access to some extra space at the end of the router's flash.
+
+### Step 5
 In `make menuconfig`, select `Base System -> ea9500_support <*>`.
+
+### Step 6
+Issue the command to build OpenWrt.
+```
+~/openwrt $ make V=s
+```
+You will find the built images at `bin/targets/bcm53xx/generic`.
 
 ## Quirks
 The EA9500's CPU ports are directly connected to a BCM53012 switch wired to LAN4,7,8 plus an external BCM53125 switch wired to LAN1,2,3,5,6.
