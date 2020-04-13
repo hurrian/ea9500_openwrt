@@ -42,6 +42,10 @@ TARGET_DEVICES += linksys-ea9500
 ### Step 4 (Optional)
 Copy `999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch` to `target/linux/bcm53xx/patches-4.14` to allow access to some extra space at the end of the router's flash.
 
+```
+~/openwrt $ cp feeds/ea9500_openwrt/999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch target/linux/bcm53xx/patches-4.14/
+```
+
 ### Step 5
 In `make menuconfig`, select `Base System -> ea9500_support <*>`.
 
