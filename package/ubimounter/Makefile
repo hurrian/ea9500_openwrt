@@ -31,19 +31,14 @@ define Package/$(PKG_NAME)/description
   Automatically mount UBIFS partitions on MTD flash.
 endef
 
-define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) ./files/* $(PKG_BUILD_DIR)/
-endef
-
 define Build/Compile
 endef
 
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) ./ubimounter.config $(1)/etc/config/ubimounter
+	$(INSTALL_CONF) ./files/ubimounter.config $(1)/etc/config/ubimounter
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./ubimounter.init $(1)/etc/init.d/ubimounter
+	$(INSTALL_BIN) ./files/ubimounter.init $(1)/etc/init.d/ubimounter
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
