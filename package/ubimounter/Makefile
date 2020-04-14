@@ -36,6 +36,9 @@ define Build/Prepare
 	$(CP) ./files/* $(PKG_BUILD_DIR)/
 endef
 
+define Build/Compile
+endef
+
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./ubimounter.config $(1)/etc/config/ubimounter
