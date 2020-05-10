@@ -1,11 +1,12 @@
 ea9500_openwrt
 =====
-OpenWrt support for the Linksys EA9500
+OpenWrt support for the Linksys EA9500, EA9200
 
 This repository aims to support the Linksys EA9500 `(linksys,panamera)` using the `swconfig` driver and configuration framework.
+Support for EA9200 is added using the already existing brcmfmac drivers. 
 
 ## Components
-* [ea9500_support](https://github.com/hurrian/ea9500_openwrt/package/ea9500_support) : Adds LED, switch, and dual-partition support for the Linksys EA9500
+*[ea_9x00 Support] : Adds LED, switch, and dual-partition support for the Linksys EA9500, LinkSys EA9200
 
 ## Building
 
@@ -27,6 +28,7 @@ While in your buildroot directory (ex. ``~/openwrt``), run the following command
 ```
 
 ### Step 3
+#### EA9500
 You must then enable the Linksys EA9500 target in `target/linux/bcm53xx/image/Makefile` by uncommenting `TARGET_DEVICES += linksys-ea9500`.
 
 ```
@@ -39,7 +41,19 @@ endef
 TARGET_DEVICES += linksys-ea9500
 ```
 
-### Step 4 (Optional)
+#### EA9200
+For EA9200, uncomment the following line from `target/linux/bcm53xx/image/Makefile`
+```
+define Device/linksys-ea9200
+  DEVICE_VENDOR := Linksys
+  DEVICE_MODEL := EA9200
+  DEVICE_VARIANT := v1
+  DEVICE_PACKAGES := $(BRCMFMAC_43602A1) $(USB3_PACKAGES)
+endef
+TARGET_DEVICES += linksys-ea9200
+```
+
+### Step 4 (Optional , Not tested on EA9200))
 Copy `999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch` to `target/linux/bcm53xx/patches-4.14` to allow access to some extra space at the end of the router's flash.
 
 ```
@@ -47,7 +61,7 @@ Copy `999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.p
 ```
 
 ### Step 5
-In `make menuconfig`, select `Base System -> ea9500_support <*>`.
+In `make menuconfig`, select `Base System -> ea9x00_support <*>`.
 
 ### Step 6
 Issue the command to build OpenWrt.
