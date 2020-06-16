@@ -39,6 +39,7 @@ asus,rt-ac87u)
 	etXmacaddr=$(nvram get et1macaddr)
 	;;
 dlink,dir-885l | \
+linksys,ea9200 | \
 netgear,r7900 | \
 netgear,r8000 | \
 netgear,r8500)
@@ -58,6 +59,7 @@ esac
 case "$board" in
 dlink,dir-885l | \
 linksys,panamera | \
+linksys,ea9200 | \
 netgear,r7900 | \
 netgear,r8000 | \
 netgear,r8500)

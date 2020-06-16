@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=ea9500_support
+PKG_NAME:=clear_partialboot
 PKG_VERSION:=1
 PKG_RELEASE:=1
 
@@ -17,24 +17,24 @@ SCAN_DEPS = *.mk
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/ea9500_support
+define Package/clear_partialboot
   SECTION:=base
   CATEGORY:=Base system
   TITLE:=$(1)
 endef
 
 define Package/base-files/description
- This package contains scripts to support the Linksys EA9500 (linksys,panamera).
+ This package contains scripts to set the proper boot partition on Linksys dual-partition routers.
 endef
 
 define Build/Compile
 
 endef
 
-define Package/ea9500_support/install
+define Package/clear_partialboot/install
 	# Make dual boot behave
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(INSTALL_BIN) ./files/etc/init.d/clear_partialboot $(1)/etc/init.d/clear_partialboot
 endef
 
-$(eval $(call BuildPackage,ea9500_support))
+$(eval $(call BuildPackage,clear_partialboot))
