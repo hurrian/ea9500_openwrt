@@ -23,7 +23,7 @@ define Package/clear_partialboot
   TITLE:=$(1)
 endef
 
-define Package/base-files/description
+define Package/clear_partialboot/description
  This package contains scripts to set the proper boot partition on Linksys dual-partition routers.
 endef
 
