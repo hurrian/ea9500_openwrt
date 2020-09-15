@@ -1,21 +1,18 @@
-ea9500_openwrt
+ea9x00_openwrt
 =====
-OpenWrt support for the Linksys EA9500 and EA9400
+OpenWrt support for the Linksys EA9500, EA9400, and EA9200
 
-This repository aims to support the Linksys EA9500 and EA9400 `(linksys,panamera)` using the `swconfig` driver and configuration framework.
+This repository aims to support the Linksys EA9500/EA9400 `(linksys,panamera)` amd the Linksys EA9200 `(linksys,ea9200)` using the `swconfig` driver and configuration framework.
 
 ## Components
 * [clear_partialboot](https://github.com/hurrian/ea9500_openwrt/package/clear_partialboot) : Ensures that Linksys dual-partition routers always boot to the correct partition
 * `EA9500:` [brcmfmac-firmware-4366c0-pcie-panamera](https://github.com/hurrian/ea9500_openwrt/package/brcmfmac-firmware-4366c0-pcie-panamera) : Wireless firmware package that allows all three radios on EA9500 to function
 * `EA9400:` [brcmfmac-firmware-4366b1-pcie-panamera](https://github.com/hurrian/ea9500_openwrt/package/brcmfmac-firmware-4366b1-pcie-panamera) : Wireless firmware package that allows all three radios on EA9400 to function
-* `Optional:` [ubimounter](https://github.com/hurrian/ea9500_openwrt/package/ubimounter) : Scripts to automatically mount UBIFS partitions from a selected MTD device
-* `Optional:` [luci-app-ubimounter](https://github.com/hurrian/ea9500_openwrt/package/luci-app-ubimounter) : LuCI configuration package for `ubimounter`
 
 ## Building
 
 ### Step 1
-To build OpenWrt for the EA9500/EA9400, you must first add this feed to your `feeds.conf`
-
+To build OpenWrt for EA9x00, you must first add this feed to your `feeds.conf`
 ```
 src-git ea9500_openwrt https://github.com/hurrian/ea9500_openwrt.git
 
@@ -56,18 +53,23 @@ endef
 TARGET_DEVICES += linksys-ea9400
 ```
 
-### Step 4 (Optional)
-Copy `999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch` to `target/linux/bcm53xx/patches-4.14` to allow access to some extra space at the end of the router's flash.
-
+#### Step 3C: For Linksys EA9200
+Enable the Linksys EA9200 target in `target/linux/bcm53xx/image/Makefile` by uncommenting `TARGET_DEVICES += linksys-ea9200`
 ```
-~/openwrt $ cp feeds/ea9500_openwrt/999-vX.XX-0001-ARM-dts-BCM47094-LinksysPanamera-Specify-Flash-Partitions.patch target/linux/bcm53xx/patches-4.14/
+define Device/linksys-ea9200
+  DEVICE_VENDOR := Linksys
+  DEVICE_MODEL := EA9200
+  DEVICE_VARIANT := v1
+  DEVICE_PACKAGES := $(BRCMFMAC_43602A1) $(USB3_PACKAGES)
+endef
+TARGET_DEVICES += linksys-ea9200
 ```
 
-### Step 5
+### Step 4
 In `make menuconfig`, you must select `Base System -> clear_partialboot <*>`.
 You may then add any additional packages you want to use.
 
-### Step 6
+### Step 5
 Issue the command to build OpenWrt.
 ```
 ~/openwrt $ make V=s
@@ -86,4 +88,4 @@ Files are licensed under the terms of GNU GPLv2 License; see LICENSE file for de
 
 ## Credits
 Credit goes to [Vivek Unune / npcomplete13](https://github.com/npcomplete13/openwrt) for figuring out the `linksys,panamera` board (EA9500/EA9400).
-Preliminary EA9200 support from [jithvk](https://github.com/jithvk/ea9x00_openwrt).
+EA9200 support from [jithvk](https://github.com/jithvk/ea9x00_openwrt).
