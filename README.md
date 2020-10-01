@@ -2,7 +2,7 @@ ea9x00_openwrt
 =====
 OpenWrt support for the Linksys EA9500, EA9400, and EA9200
 
-This repository aims to support the Linksys EA9500/EA9400 `(linksys,panamera)` amd the Linksys EA9200 `(linksys,ea9200)` using the `swconfig` driver and configuration framework.
+This repository aims to support the Linksys EA9500/EA9400 `(linksys,panamera)` and the Linksys EA9200 `(linksys,ea9200)` using the `swconfig` driver and configuration framework.
 
 ## Components
 * [clear_partialboot](https://github.com/hurrian/ea9500_openwrt/package/clear_partialboot) : Ensures that Linksys dual-partition routers always boot to the correct partition
@@ -53,7 +53,7 @@ endef
 TARGET_DEVICES += linksys-ea9400
 ```
 
-#### Step 3C: For Linksys EA9200
+### Step 3C: For Linksys EA9200
 Enable the Linksys EA9200 target in `target/linux/bcm53xx/image/Makefile` by uncommenting `TARGET_DEVICES += linksys-ea9200`
 ```
 define Device/linksys-ea9200
